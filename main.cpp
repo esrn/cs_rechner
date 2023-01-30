@@ -1,15 +1,18 @@
-#include <QtCore>
-#include <QtGui>
-#include <iostream>
+#include<QtCore>
+#include<QtGui>
+#include<iostream>
 
 class MainWindow : public QWidget
 {
 	public:
 		MainWindow();
+
+	private:
 		double operand_1 = 0.0;  //Speichervariablen erstellen
         	double operand_2 = 0.0;
         	double ergebnis = 0.0;
         	char operator_;
+		QLineEdit *anzeige;
 		void z0_angeklickt();  //Funktionen der Buttons erstellen
 		void z1_angeklickt();
 		void z2_angeklickt();
@@ -34,44 +37,44 @@ MainWindow::MainWindow()
 {
 	setMinimumSize(700, 350);
 
-	QPushButton *eingabe_z0 = new QPushbutton();  //Erstellen der Buttons
+	QPushButton *eingabe_z0 = new QPushButton();  //Erstellen der Buttons
 	eingabe_z0->setText("0");
-	QPushButton *eingabe_z1 = new QPushbutton();
+	QPushButton *eingabe_z1 = new QPushButton();
 	eingabe_z1->setText("1");
-	QPushButton *eingabe_z2 = new QPushbutton();
+	QPushButton *eingabe_z2 = new QPushButton();
 	eingabe_z2->setText("2");
-	QPushButton *eingabe_z3 = new QPushbutton();
+	QPushButton *eingabe_z3 = new QPushButton();
 	eingabe_z3->setText("3");
-	QPushButton *eingabe_z4 = new QPushbutton();
+	QPushButton *eingabe_z4 = new QPushButton();
 	eingabe_z4->setText("4");
-	QPushButton *eingabe_z5 = new QPushbutton();
+	QPushButton *eingabe_z5 = new QPushButton();
 	eingabe_z5->setText("5");
-	QPushButton *eingabe_z6 = new QPushbutton();
+	QPushButton *eingabe_z6 = new QPushButton();
 	eingabe_z6->setText("6");
-	QPushButton *eingabe_z7 = new QPushbutton();
+	QPushButton *eingabe_z7 = new QPushButton();
 	eingabe_z7->setText("7");
-	QPushButton *eingabe_z8 = new QPushbutton();
+	QPushButton *eingabe_z8 = new QPushButton();
 	eingabe_z8->setText("8");
-	QPushButton *eingabe_z9 = new QPushbutton();
+	QPushButton *eingabe_z9 = new QPushButton();
 	eingabe_z9->setText("9");
-	QPushButton *eingabe_komma = new QPushbutton();
+	QPushButton *eingabe_komma = new QPushButton();
         eingabe_z9->setText(",");
-	QPushButton *eingabe_del = new QPushbutton();
+	QPushButton *eingabe_del = new QPushButton();
 	eingabe_del->setText("DEL");
-	QPushButton *eingabe_mal = new QPushbutton();
+	QPushButton *eingabe_mal = new QPushButton();
 	eingabe_mal->setText("x");
-	QPushButton *eingabe_geteilt = new QPushbutton();
+	QPushButton *eingabe_geteilt = new QPushButton();
 	eingabe_geteilt->setText("/");
-	QPushButton *eingabe_plus = new QPushbutton();
+	QPushButton *eingabe_plus = new QPushButton();
 	eingabe_plus->setText("+");
-	QPushButton *eingabe_minus = new QPushbutton();
+	QPushButton *eingabe_minus = new QPushButton();
 	eingabe_minus->setText("-");
-	QPushButton *eingabe_gleich = new QPushbutton();
+	QPushButton *eingabe_gleich = new QPushButton();
 	eingabe_gleich->setText("=");
-	QPushButton *eingabe_allclear = new QPushbutton();
+	QPushButton *eingabe_allclear = new QPushButton();
         eingabe_gleich->setText("AC");
 
-	QLineEdit *anzeige = new QLineEdit();  //Eingaben- und Ergebnisanzeige erstellen
+	anzeige = new QLineEdit();  //Eingaben- und Ergebnisanzeige erstellen
 	anzeige->setReadOnly(true);
 	anzeige->setAlignment(Qt::AlignHCenter);
 
@@ -98,24 +101,24 @@ MainWindow::MainWindow()
 
 	setLayout(anordnung);  //Anordnung übernehmen
 
-	QObject::conncet(eingabe_z0; &QPushButton::clicked, this, &MainWindow::z0_angeklickt);  //Funktionen mit Buttons verknüpft
-	QObject::conncet(eingabe_z1; &QPushButton::clicked, this, &MainWindow::z1_angeklickt);
-	QObject::conncet(eingabe_z2; &QPushButton::clicked, this, &MainWindow::z2_angeklickt);
-	QObject::conncet(eingabe_z3; &QPushButton::clicked, this, &MainWindow::z3_angeklickt);
-	QObject::conncet(eingabe_z4; &QPushButton::clicked, this, &MainWindow::z4_angeklickt);
-	QObject::conncet(eingabe_z5; &QPushButton::clicked, this, &MainWindow::z5_angeklickt);
-	QObject::conncet(eingabe_z6; &QPushButton::clicked, this, &MainWindow::z6_angeklickt);
-	QObject::conncet(eingabe_z7; &QPushButton::clicked, this, &MainWindow::z7_angeklickt);
-	QObject::conncet(eingabe_z8; &QPushButton::clicked, this, &MainWindow::z8_angeklickt);
-	QObject::conncet(eingabe_z9; &QPushButton::clicked, this, &MainWindow::z9_angeklickt);
-	QObject::conncet(eingabe_komma; &QPushButton::clicked, this, &MainWindow::komma_angeklickt);
-	QObject::conncet(eingabe_del; &QPushButton::clicked, this, &MainWindow::del_angeklickt);
-	QObject::conncet(eingabe_mal; &QPushButton::clicked, this, &MainWindow::mal_angeklickt);
-	QObject::conncet(eingabe_geteilt; &QPushButton::clicked, this, &MainWindow::geteilt_angeklickt);
-	QObject::conncet(eingabe_plus; &QPushButton::clicked, this, &MainWindow::plus_angeklickt);
-	QObject::conncet(eingabe_minus; &QPushButton::clicked, this, &MainWindow::minus_angeklickt);
-	QObject::conncet(eingabe_gleich; &QPushButton::clicked, this, &MainWindow::gleich_angeklickt);
-	QObject::conncet(eingabe_allclear; &QPushButton::clicked, this, &MainWindow::allclear_angeklickt);
+	QObject::connect(eingabe_z0, &QPushButton::clicked, this, &MainWindow::z0_angeklickt);  //Funktionen mit Buttons verknüpft
+	QObject::connect(eingabe_z1, &QPushButton::clicked, this, &MainWindow::z1_angeklickt);
+	QObject::connect(eingabe_z2, &QPushButton::clicked, this, &MainWindow::z2_angeklickt);
+	QObject::connect(eingabe_z3, &QPushButton::clicked, this, &MainWindow::z3_angeklickt);
+	QObject::connect(eingabe_z4, &QPushButton::clicked, this, &MainWindow::z4_angeklickt);
+	QObject::connect(eingabe_z5, &QPushButton::clicked, this, &MainWindow::z5_angeklickt);
+	QObject::connect(eingabe_z6, &QPushButton::clicked, this, &MainWindow::z6_angeklickt);
+	QObject::connect(eingabe_z7, &QPushButton::clicked, this, &MainWindow::z7_angeklickt);
+	QObject::connect(eingabe_z8, &QPushButton::clicked, this, &MainWindow::z8_angeklickt);
+	QObject::connect(eingabe_z9, &QPushButton::clicked, this, &MainWindow::z9_angeklickt);
+	QObject::connect(eingabe_komma, &QPushButton::clicked, this, &MainWindow::komma_angeklickt);
+	QObject::connect(eingabe_del, &QPushButton::clicked, this, &MainWindow::del_angeklickt);
+	QObject::connect(eingabe_mal, &QPushButton::clicked, this, &MainWindow::mal_angeklickt);
+	QObject::connect(eingabe_geteilt, &QPushButton::clicked, this, &MainWindow::geteilt_angeklickt);
+	QObject::connect(eingabe_plus, &QPushButton::clicked, this, &MainWindow::plus_angeklickt);
+	QObject::connect(eingabe_minus, &QPushButton::clicked, this, &MainWindow::minus_angeklickt);
+	QObject::connect(eingabe_gleich, &QPushButton::clicked, this, &MainWindow::gleich_angeklickt);
+	QObject::connect(eingabe_allclear, &QPushButton::clicked, this, &MainWindow::allclear_angeklickt);
 }
 
 void MainWindow::z0_angeklickt()  //Funktionen der Buttons beschreiben
@@ -170,7 +173,7 @@ void MainWindow::z9_angeklickt()
 
 void MainWindow::komma_angeklickt()
 {
-        anzeige->insert(",");
+        anzeige->insert(".");
 }
 
 void MainWindow::del_angeklickt()
@@ -180,33 +183,33 @@ void MainWindow::del_angeklickt()
 
 void MainWindow::mal_angeklickt()
 {
-        operand_1 = strtod(anzeige->displaytext(),NULL);
+        operand_1 = anzeige->text().toDouble();
 	operator_ = 'x';
 	anzeige->clear();
 }
 
 void MainWindow::geteilt_angeklickt()
 {
-        operand_1 = strtod(anzeige->displaytext(),NULL);
+        operand_1 = anzeige->text().toDouble();
         operator_ = '/';
         anzeige->clear();
 }
 
 void MainWindow::plus_angeklickt()
 {
-        operand_1 = strtod(anzeige->displaytext(),NULL);
+        operand_1 = anzeige->text().toDouble();
         operator_ = '+';
         anzeige->clear();
 }
 
 void MainWindow::minus_angeklickt()
 {
-        operand_1 = strtod(anzeige->displaytext(),NULL);
+        operand_1 = anzeige->text().toDouble();
         operator_ = '-';
         anzeige->clear();
 }
 
-void MainWindows::allclear_angeklickt()
+void MainWindow::allclear_angeklickt()
 {
 	operand_1 = 0;
 	operand_2 = 0;
@@ -216,23 +219,23 @@ void MainWindows::allclear_angeklickt()
 
 void MainWindow::gleich_angeklickt()
 {
-        operand_2 = strtod(anzeige->displaytext(),NULL);
+        operand_2 = anzeige->text().toDouble();
 	switch(operator_)
 	{
-		case x:
+		case 'x':
 			ergebnis = operand_1*operand_2;
 			break;
-		case /:
+		case '/':
 			ergebnis = operand_1/operand_2;
 			break;
-		case +:
+		case '+':
 			ergebnis = operand_1+operand_2;
-			break
-		case -: 
+			break;
+		case '-': 
 			ergebnis = operand_1-operand_2;
 			break;
 	}
-       anzeige->setText(ergebnis); 
+       anzeige->setText(QString::number(ergebnis)); 
 }
 
 
