@@ -34,16 +34,16 @@ if (CMAKE_SYSTEM_NAME MATCHES "Darwin")
     set(CMAKE_CXX_STANDARD 17)
 
 # location for building binary files
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY $ {CMAKE_BINARY_DIR}/bin)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
     list(APPEND PROJECT_SOURCES
-         $ {CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+         ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
         )
 
-    add_executable($ {PROJECT_NAME} $ {PROJECT_SOURCES})
+    add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 
     if(CMAKE_SYSTEM_NAME MATCHES "Windows")
-        target_link_libraries($ {PROJECT_NAME}
+        target_link_libraries(${PROJECT_NAME}
                               PRIVATE
                               netapi32
                               mpr
@@ -51,15 +51,13 @@ if (CMAKE_SYSTEM_NAME MATCHES "Darwin")
                              )
         endif()
 
-        target_link_libraries($ {
-                                  PROJECT_NAME
-                              }
+        target_link_libraries(${PROJECT_NAME}
                               PRIVATE
                               CopperSpice::CsCore
                               CopperSpice::CsGui
                              )
 
-        install(TARGETS $ {PROJECT_NAME} DESTINATION .)
+        install(TARGETS ${PROJECT_NAME} DESTINATION .)
         cs_copy_library(CsCore)
         cs_copy_library(CsGui)
 
