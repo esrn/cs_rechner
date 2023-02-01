@@ -31,6 +31,7 @@ class MainWindow : public QWidget
 		void mal_angeklickt();
 		void geteilt_angeklickt();
 		void gleich_angeklickt();
+		void vz_angeklickt();
 };
 
 MainWindow::MainWindow()
@@ -58,7 +59,7 @@ MainWindow::MainWindow()
 	QPushButton *eingabe_z9 = new QPushButton();
 	eingabe_z9->setText("9");
 	QPushButton *eingabe_komma = new QPushButton();
-        eingabe_z9->setText(",");
+        eingabe_komma->setText(",");
 	QPushButton *eingabe_del = new QPushButton();
 	eingabe_del->setText("DEL");
 	QPushButton *eingabe_mal = new QPushButton();
@@ -72,32 +73,35 @@ MainWindow::MainWindow()
 	QPushButton *eingabe_gleich = new QPushButton();
 	eingabe_gleich->setText("=");
 	QPushButton *eingabe_allclear = new QPushButton();
-        eingabe_gleich->setText("AC");
+        eingabe_allclear->setText("AC");
+	QPushButton *eingabe_vz = new QPushButton();
+        eingabe_vz->setText("+ / _");
 
 	anzeige = new QLineEdit();  //Eingaben- und Ergebnisanzeige erstellen
 	anzeige->setReadOnly(true);
-	anzeige->setAlignment(Qt::AlignHCenter);
+	anzeige->setAlignment(Qt::AlignRight);
 
 	QGridLayout *anordnung = new QGridLayout();  //Anordnung der Buttons erstellen
-	anordnung->addWidget(anzeige,0,0,-1,1);
-	anordnung->addWidget(eingabe_z0,5,2,1,1);
-	anordnung->addWidget(eingabe_z1,4,1,1,1);
-	anordnung->addWidget(eingabe_z2,4,2,1,1);
-	anordnung->addWidget(eingabe_z3,4,3,1,1);
-	anordnung->addWidget(eingabe_z4,3,1,1,1);
-	anordnung->addWidget(eingabe_z5,3,2,1,1);
-	anordnung->addWidget(eingabe_z6,3,3,1,1);
-	anordnung->addWidget(eingabe_z7,2,1,1,1);
-	anordnung->addWidget(eingabe_z8,2,2,1,1);
-	anordnung->addWidget(eingabe_z9,2,3,1,1);
-	anordnung->addWidget(eingabe_komma,1,3,1,1);
-	anordnung->addWidget(eingabe_del,6,4,1,1);
-	anordnung->addWidget(eingabe_mal,2,4,1,1);
-	anordnung->addWidget(eingabe_geteilt,1,4,1,1);
-	anordnung->addWidget(eingabe_plus,4,4,1,1);
-	anordnung->addWidget(eingabe_minus,3,4,1,1);
-	anordnung->addWidget(eingabe_gleich,5,4,1,1);
-	anordnung->addWidget(eingabe_allclear,6,3,1,1);
+	anordnung->addWidget(anzeige,1,1,1,4);
+	anordnung->addWidget(eingabe_z0,6,2,1,1);
+	anordnung->addWidget(eingabe_z1,5,1,1,1);
+	anordnung->addWidget(eingabe_z2,5,2,1,1);
+	anordnung->addWidget(eingabe_z3,5,3,1,1);
+	anordnung->addWidget(eingabe_z4,4,1,1,1);
+	anordnung->addWidget(eingabe_z5,4,2,1,1);
+	anordnung->addWidget(eingabe_z6,4,3,1,1);
+	anordnung->addWidget(eingabe_z7,3,1,1,1);
+	anordnung->addWidget(eingabe_z8,3,2,1,1);
+	anordnung->addWidget(eingabe_z9,3,3,1,1);
+	anordnung->addWidget(eingabe_komma,6,1,1,1);
+	anordnung->addWidget(eingabe_del,2,3,1,1);
+	anordnung->addWidget(eingabe_mal,4,4,1,1);
+	anordnung->addWidget(eingabe_geteilt,3,4,1,1);
+	anordnung->addWidget(eingabe_plus,6,4,1,1);
+	anordnung->addWidget(eingabe_minus,5,4,1,1);
+	anordnung->addWidget(eingabe_gleich,6,3,1,1);
+	anordnung->addWidget(eingabe_allclear,2,4,1,1);
+	anordnung->addWidget(eingabe_vz,2,1,1,1);
 
 	setLayout(anordnung);  //Anordnung übernehmen
 
@@ -119,61 +123,116 @@ MainWindow::MainWindow()
 	QObject::connect(eingabe_minus, &QPushButton::clicked, this, &MainWindow::minus_angeklickt);
 	QObject::connect(eingabe_gleich, &QPushButton::clicked, this, &MainWindow::gleich_angeklickt);
 	QObject::connect(eingabe_allclear, &QPushButton::clicked, this, &MainWindow::allclear_angeklickt);
+	QObject::connect(eingabe_vz, &QPushButton::clicked, this, &MainWindow::vz_angeklickt);
 }
 
 void MainWindow::z0_angeklickt()  //Funktionen der Buttons beschreiben
 {
+	if(anzeige->text()=="0")
+	{
+		anzeige->clear();
+	}
 	anzeige->insert("0");
 }
 
 void MainWindow::z1_angeklickt()
 {
+	if(anzeige->text()=="0")
+        {
+                anzeige->clear();
+        }
         anzeige->insert("1");
 }
 
 void MainWindow::z2_angeklickt()
-{
+{	
+	if(anzeige->text()=="0")
+        {
+                anzeige->clear();
+        }
         anzeige->insert("2");
 }
 
 void MainWindow::z3_angeklickt()
 {
-        anzeige->insert("3");
+        if(anzeige->text()=="0")
+        {
+                anzeige->clear();
+        }
+	anzeige->insert("3");
 }
 
 void MainWindow::z4_angeklickt()
 {
-        anzeige->insert("4");
+        if(anzeige->text()=="0")
+        {
+                anzeige->clear();
+        }
+	anzeige->insert("4");
 }
 
 void MainWindow::z5_angeklickt()
 {
-        anzeige->insert("5");
+	if(anzeige->text()=="0")
+        {
+                anzeige->clear();
+        }
+	anzeige->insert("5");
 }
 
 void MainWindow::z6_angeklickt()
 {
-        anzeige->insert("6");
+	if(anzeige->text()=="0")
+        {
+                anzeige->clear();
+        }
+	anzeige->insert("6");
 }
 
 void MainWindow::z7_angeklickt()
 {
-        anzeige->insert("7");
+	if(anzeige->text()=="0")
+        {
+                anzeige->clear();
+        }anzeige->insert("7");
 }
 
 void MainWindow::z8_angeklickt()
 {
-        anzeige->insert("8");
+	if(anzeige->text()=="0")
+        {
+                anzeige->clear();
+        }
+	anzeige->insert("8");
 }
 
 void MainWindow::z9_angeklickt()
 {
-        anzeige->insert("9");
+	if(anzeige->text()=="0")
+        {
+                anzeige->clear();
+        }
+	anzeige->insert("9");
+}
+
+void MainWindow::vz_angeklickt()
+{
+	if(anzeige->text()!="0")
+        {
+        	double temp = 0.0;
+		temp = anzeige->text().toDouble();
+		temp = temp*(-1);
+		anzeige->setText(QString::number(temp));
+	}
+
 }
 
 void MainWindow::komma_angeklickt()
 {
-        anzeige->insert(".");
+	if(anzeige->text().contains(".")==false)
+	{
+		anzeige->insert(".");
+	}
 }
 
 void MainWindow::del_angeklickt()
@@ -220,14 +279,21 @@ void MainWindow::allclear_angeklickt()
 void MainWindow::gleich_angeklickt()
 {
         operand_2 = anzeige->text().toDouble();
+	
 	switch(operator_)
 	{
 		case 'x':
 			ergebnis = operand_1*operand_2;
 			break;
 		case '/':
+			if(operand_2==0)
+			{
+				anzeige->setText("ERR");
+			}else
+			{
 			ergebnis = operand_1/operand_2;
 			break;
+			}
 		case '+':
 			ergebnis = operand_1+operand_2;
 			break;
@@ -235,7 +301,7 @@ void MainWindow::gleich_angeklickt()
 			ergebnis = operand_1-operand_2;
 			break;
 	}
-       anzeige->setText(QString::number(ergebnis)); 
+       anzeige->setText(QString::number(ergebnis));
 }
 
 
